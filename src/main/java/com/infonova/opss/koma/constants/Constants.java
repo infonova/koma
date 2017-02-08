@@ -11,6 +11,7 @@ public class Constants {
     public static final String RESET_TO = "reset.to";
     public static final String OFFSET = "offset";
     public static final String TIMESTAMP = "timestamp";
+    public static final String TIMESTAMP_FORMAT = "timestamp.format";
     public static final String HELP = "help";
 
     public static final String DEFAULT_KEY_DESERIALIZER = "org.apache.kafka.common.serialization.StringDeserializer";

@@ -9,6 +9,7 @@ public class KomaSettings {
     private int partition;
     private long offset;
     private String timestamp;
+    private String timestampFormat;
 
     public void setBootstrapServers(String bs) {
         this.bootstrapServers = bs;
@@ -42,6 +43,10 @@ public class KomaSettings {
         this.timestamp = ts;
     }
 
+    public void setTimestampFormat(String f) {
+        this.timestampFormat = f;
+    }
+
     public String getBootstrapServers() {
         return bootstrapServers;
     }
@@ -72,5 +77,9 @@ public class KomaSettings {
 
     public String getTimestamp() {
         return timestamp;
+    }
+
+    public String getTimestampFormat() {
+        return timestampFormat;
     }
 }

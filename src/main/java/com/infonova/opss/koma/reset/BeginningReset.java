@@ -7,7 +7,6 @@ import com.infonova.opss.koma.constants.Constants;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -25,13 +24,7 @@ public class BeginningReset implements Reset {
         log.info(String.format("Reset topic %s, partition %s to beginning for group %s", 
                     ks.getTopic(), ks.getPartition(), ks.getGroupId()));
         
-        Properties props = new Properties();
-        props.put(Constants.BOOTSTRAP_SERVERS, ks.getBootstrapServers()); 
-        props.put(Constants.GROUP_ID, ks.getGroupId()); 
-        props.put(Constants.KEY_DESERIALIZER, ks.getKeyDeserializer()); 
-        props.put(Constants.VALUE_DESERIALIZER, ks.getValueDeserializer()); 
-
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+        KafkaConsumer<String, String> consumer = createConsumer(ks);
 
         TopicPartition topicPartition = new TopicPartition(ks.getTopic(), ks.getPartition());
         consumer.assign(Arrays.asList(topicPartition));

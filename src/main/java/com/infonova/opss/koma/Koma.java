@@ -55,6 +55,7 @@ public class Koma {
             komaSettings.setPartition(Integer.parseInt(komaCl.getOptionValue(Constants.PARTITION)));
             komaSettings.setOffset(Long.parseLong(komaCl.getOptionValue(Constants.OFFSET, String.valueOf(Long.MAX_VALUE))));
             komaSettings.setTimestamp(komaCl.getOptionValue(Constants.TIMESTAMP, "2222.12.31 23:59:59.000"));
+            komaSettings.setTimestampFormat(komaCl.getOptionValue(Constants.TIMESTAMP_FORMAT, "yyyy.MM.dd HH:mm:ss.SSS"));
 
             Reset reset = resetType.getReset();
             reset.resetPartition(komaSettings);
@@ -157,25 +158,35 @@ public class Koma {
             .build();
         options.addOption(timestamp);
 
+        Option timestampFormat = Option.builder("f")
+            .type(String.class)
+            .required(false)
+            .hasArg()
+            .argName("format")
+            .longOpt(Constants.TIMESTAMP_FORMAT)
+            .desc("The timestamp format. The default is  yyyy.MM.dd HH:mm:ss.SSS")
+            .build();
+        options.addOption(timestampFormat);
+
         Option keyDeserializer = Option.builder("k")
             .type(String.class)
             .required(false)
             .hasArg()
-            .argName("key.deserializer")
+            .argName("class")
             .longOpt(Constants.KEY_DESERIALIZER)
             .desc("The key deserializer. Defaults to org.apache.kafka.common.serialization.StringDeserializer")
             .build();
-        options.addOption(timestamp);
+        options.addOption(keyDeserializer);
 
         Option valueDeserializer = Option.builder("v")
             .type(String.class)
             .required(false)
             .hasArg()
-            .argName("value.deserializer")
+            .argName("class")
             .longOpt(Constants.VALUE_DESERIALIZER)
             .desc("The value deserializer. Defaults to org.apache.kafka.common.serialization.StringDeserializer")
             .build();
-        options.addOption(timestamp);
+        options.addOption(valueDeserializer);
 
         return options;
     }

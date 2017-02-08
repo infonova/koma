@@ -1,0 +1,18 @@
+<assembly>
+    <id>bin</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+ 
+    <files>
+        <file>
+            <source>${project.build.scriptSourceDirectory}/koma.sh</source>
+            <outputDirectory>/</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+        <file>
+            <source>${project.build.directory}/uber-koma-${project.version}.jar</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+    </files>
+</assembly>
