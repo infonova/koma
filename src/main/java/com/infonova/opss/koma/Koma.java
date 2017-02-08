@@ -120,7 +120,7 @@ public class Koma {
 
         Option partition = Option.builder("p")
             .type(Number.class)
-            .required(false)
+            .required(true)
             .hasArg()
             .argName("id")
             .longOpt(Constants.PARTITION)
