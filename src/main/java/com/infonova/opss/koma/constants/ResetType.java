@@ -1,4 +1,4 @@
-package com.infonova.opss.koma;
+package com.infonova.opss.koma.constants;
 
 import com.infonova.opss.koma.reset.*;
 
