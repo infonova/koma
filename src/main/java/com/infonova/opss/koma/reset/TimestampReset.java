@@ -4,6 +4,7 @@ import com.infonova.opss.koma.KomaSettings;
 import com.infonova.opss.koma.reset.Reset;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -35,7 +36,7 @@ public class TimestampReset implements Reset {
         long millis = zonedDateTime.toInstant().toEpochMilli();
 
         TopicPartition topicPartition = new TopicPartition(ks.getTopic(), ks.getPartition());
-        consumer.assign(Arrays.asList(topicPartition));
+        consumer.assign(Collections.singletonList(topicPartition));
 
         Map<TopicPartition, Long> query = new HashMap<>();
         query.put(topicPartition, millis);

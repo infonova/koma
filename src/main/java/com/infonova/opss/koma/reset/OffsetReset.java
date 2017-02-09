@@ -4,10 +4,7 @@ import com.infonova.opss.koma.KomaSettings;
 import com.infonova.opss.koma.reset.Reset;
 import com.infonova.opss.koma.constants.Constants;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -28,7 +25,7 @@ public class OffsetReset implements Reset {
         KafkaConsumer<String, String> consumer = createConsumer(ks);
 
         TopicPartition topicPartition = new TopicPartition(ks.getTopic(), ks.getPartition());
-        consumer.assign(Arrays.asList(topicPartition));
+        consumer.assign(Collections.singletonList(topicPartition));
         consumer.seek(topicPartition, ks.getOffset());
 
         OffsetAndMetadata offsetMeta = new OffsetAndMetadata(consumer.position(topicPartition));

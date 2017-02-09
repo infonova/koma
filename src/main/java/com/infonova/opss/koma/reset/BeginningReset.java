@@ -5,6 +5,7 @@ import com.infonova.opss.koma.reset.Reset;
 import com.infonova.opss.koma.constants.Constants;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -27,7 +28,7 @@ public class BeginningReset implements Reset {
         KafkaConsumer<String, String> consumer = createConsumer(ks);
 
         TopicPartition topicPartition = new TopicPartition(ks.getTopic(), ks.getPartition());
-        consumer.assign(Arrays.asList(topicPartition));
+        consumer.assign(Collections.singletonList(topicPartition));
         consumer.seekToBeginning(
                 Stream.of(topicPartition)
                     .collect(Collectors.toList()));
